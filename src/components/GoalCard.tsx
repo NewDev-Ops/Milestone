@@ -16,8 +16,11 @@ export const GoalCard: React.FC<GoalCardProps> = ({ goal, onLogSession, onViewTi
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      layout
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9, y: -20 }}
+      transition={{ type: "spring", damping: 25, stiffness: 300 }}
       className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 shadow-lg relative overflow-hidden"
     >
       <div className="flex justify-between items-start mb-4">
@@ -28,12 +31,14 @@ export const GoalCard: React.FC<GoalCardProps> = ({ goal, onLogSession, onViewTi
             <span>{goal.current} / {goal.target} {goal.unit}</span>
           </div>
         </div>
-        <button 
+        <motion.button 
+          whileHover={{ scale: 1.1, rotate: 10 }}
+          whileTap={{ scale: 0.9 }}
           onClick={() => onDelete(goal.id)}
           className="text-zinc-600 hover:text-red-400 transition-colors p-2"
         >
           <Trash2 size={18} />
-        </button>
+        </motion.button>
       </div>
 
       <div className="mb-6">
@@ -41,14 +46,14 @@ export const GoalCard: React.FC<GoalCardProps> = ({ goal, onLogSession, onViewTi
           <span>Progress</span>
           <span className="text-amber-500">{percentage}%</span>
         </div>
-        <div className="h-3 bg-zinc-800 rounded-full overflow-hidden relative">
+        <motion.div layout className="h-3 bg-zinc-800 rounded-full overflow-hidden relative">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${percentage}%` }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1, type: "spring", bounce: 0.2 }}
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.5)]"
           />
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex justify-between mb-6 px-2">
@@ -72,19 +77,23 @@ export const GoalCard: React.FC<GoalCardProps> = ({ goal, onLogSession, onViewTi
       </div>
 
       <div className="flex gap-3">
-        <button 
+        <motion.button 
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onLogSession(goal.id)}
           className="flex-1 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-[0_0_15px_rgba(245,158,11,0.2)]"
         >
           <Plus size={18} className="mr-2" />
           Log Session
-        </button>
-        <button 
+        </motion.button>
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => onViewTimeline(goal.id)}
           className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium py-3 px-4 rounded-xl flex items-center justify-center transition-colors"
         >
           <Clock size={18} />
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );

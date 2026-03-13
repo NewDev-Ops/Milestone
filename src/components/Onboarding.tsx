@@ -82,9 +82,11 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
           ))}
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={handleNext}
-          className="w-full max-w-sm bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-[0_0_20px_rgba(245,158,11,0.3)] text-lg"
+          className="w-full max-w-sm bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-2 transition-colors shadow-[0_0_20px_rgba(245,158,11,0.3)] text-lg"
         >
           {currentStep === steps.length - 1 ? (
             <>
@@ -95,7 +97,7 @@ export const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
               Continue <ArrowRight size={20} />
             </>
           )}
-        </button>
+        </motion.button>
       </div>
     </div>
   );

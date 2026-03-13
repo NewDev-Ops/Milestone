@@ -22,17 +22,20 @@ export function AddGoalModal({ onClose, onAdd }: AddGoalModalProps) {
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 pt-[calc(1rem+env(safe-area-inset-top))] pb-[calc(1rem+env(safe-area-inset-bottom))] pl-[calc(1rem+env(safe-area-inset-left))] pr-[calc(1rem+env(safe-area-inset-right))]">
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
         className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 w-full max-w-md shadow-2xl relative"
       >
-        <button 
+        <motion.button 
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           onClick={onClose}
           className="absolute top-4 right-4 text-zinc-500 hover:text-zinc-300 p-2"
         >
           <X size={20} />
-        </button>
+        </motion.button>
 
         <h2 className="text-2xl font-bold text-zinc-100 mb-6">New Milestone</h2>
 
@@ -78,12 +81,14 @@ export function AddGoalModal({ onClose, onAdd }: AddGoalModalProps) {
             </div>
           </div>
 
-          <button 
+          <motion.button 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
             className="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-4 rounded-xl mt-6 transition-colors shadow-[0_0_15px_rgba(245,158,11,0.2)]"
           >
             Create Goal
-          </button>
+          </motion.button>
         </form>
       </motion.div>
     </div>

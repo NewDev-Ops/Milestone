@@ -22,14 +22,22 @@ export function Timeline({ goal, sessions, onClose }: TimelineProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-zinc-950 z-50 flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
+    <motion.div 
+      initial={{ opacity: 0, y: "100%" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "100%" }}
+      transition={{ type: "spring", damping: 25, stiffness: 300 }}
+      className="fixed inset-0 bg-zinc-950 z-50 flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
+    >
       <div className="bg-zinc-900 border-b border-zinc-800 p-4 flex items-center sticky top-0 z-10">
-        <button 
+        <motion.button 
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           onClick={onClose}
           className="mr-4 text-zinc-400 hover:text-zinc-100 transition-colors p-2"
         >
           <ArrowLeft size={24} />
-        </button>
+        </motion.button>
         <div>
           <h2 className="text-xl font-bold text-zinc-100">{goal.title}</h2>
           <p className="text-zinc-500 text-sm">Journey Timeline</p>
@@ -55,7 +63,10 @@ export function Timeline({ goal, sessions, onClose }: TimelineProps) {
               >
                 <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-amber-500 border-4 border-zinc-950 shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
                 
-                <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 shadow-sm">
+                <motion.div 
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 shadow-sm transition-colors hover:border-zinc-700"
+                >
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-amber-500 font-bold text-lg">
                       +{session.amount} <span className="text-sm font-medium text-amber-500/70">{goal.unit}</span>
@@ -70,12 +81,12 @@ export function Timeline({ goal, sessions, onClose }: TimelineProps) {
                       "{session.note}"
                     </p>
                   )}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
