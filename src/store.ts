@@ -22,6 +22,7 @@ export type AppState = {
   sessions: Session[];
   streak: number;
   lastLogDate: string | null;
+  hasSeenOnboarding: boolean;
 };
 
 const defaultState: AppState = {
@@ -29,6 +30,7 @@ const defaultState: AppState = {
   sessions: [],
   streak: 0,
   lastLogDate: null,
+  hasSeenOnboarding: false,
 };
 
 export function useMilestoneStore() {
@@ -140,5 +142,9 @@ export function useMilestoneStore() {
     return state.streak;
   };
 
-  return { state, addGoal, addSession, deleteGoal, activeStreak: getActiveStreak() };
+  const completeOnboarding = () => {
+    setState((s) => ({ ...s, hasSeenOnboarding: true }));
+  };
+
+  return { state, addGoal, addSession, deleteGoal, completeOnboarding, activeStreak: getActiveStreak() };
 }

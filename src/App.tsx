@@ -5,11 +5,12 @@ import { AddGoalModal } from './components/AddGoalModal';
 import { SessionModal } from './components/SessionModal';
 import { Timeline } from './components/Timeline';
 import { BadgeAnimation } from './components/BadgeAnimation';
+import { Onboarding } from './components/Onboarding';
 import { Flame, Plus, Activity, Target } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
-  const { state, addGoal, addSession, deleteGoal, activeStreak } = useMilestoneStore();
+  const { state, addGoal, addSession, deleteGoal, completeOnboarding, activeStreak } = useMilestoneStore();
   
   const [isAddGoalOpen, setIsAddGoalOpen] = useState(false);
   const [loggingGoalId, setLoggingGoalId] = useState<string | null>(null);
@@ -32,9 +33,13 @@ export default function App() {
   const timelineGoal = state.goals.find(g => g.id === timelineGoalId);
   const timelineSessions = state.sessions.filter(s => s.goalId === timelineGoalId);
 
+  if (!state.hasSeenOnboarding) {
+    return <Onboarding onComplete={completeOnboarding} />;
+  }
+
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-amber-500/30">
-      <header className="sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-900 px-6 py-4 flex justify-between items-center">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-amber-500/30 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
+      <header className="sticky top-[env(safe-area-inset-top)] z-40 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-900 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.4)]">
             <Activity size={20} className="text-zinc-950" />
@@ -78,7 +83,7 @@ export default function App() {
         )}
       </main>
 
-      <div className="fixed bottom-8 left-0 right-0 flex justify-center z-30 pointer-events-none">
+      <div className="fixed bottom-[calc(2rem+env(safe-area-inset-bottom))] left-0 right-0 flex justify-center z-30 pointer-events-none">
         <button 
           onClick={() => setIsAddGoalOpen(true)}
           className="pointer-events-auto bg-amber-500 hover:bg-amber-400 text-zinc-950 rounded-full p-4 shadow-[0_10px_30px_rgba(245,158,11,0.4)] transition-transform hover:scale-105 active:scale-95 flex items-center gap-2 font-bold px-6"

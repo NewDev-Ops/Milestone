@@ -21,7 +21,7 @@ export function BadgeAnimation({ milestone, onComplete }: BadgeAnimationProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/90 backdrop-blur-md"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/90 backdrop-blur-md pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
       >
         <motion.div 
           initial={{ scale: 0.5, y: 50, rotate: -10 }}

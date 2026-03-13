@@ -22,7 +22,7 @@ export function Timeline({ goal, sessions, onClose }: TimelineProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-zinc-950 z-50 flex flex-col">
+    <div className="fixed inset-0 bg-zinc-950 z-50 flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
       <div className="bg-zinc-900 border-b border-zinc-800 p-4 flex items-center sticky top-0 z-10">
         <button 
           onClick={onClose}
