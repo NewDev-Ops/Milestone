@@ -1,34 +1,20 @@
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-# 🎯 Milestone
+# Run and deploy your AI Studio app
 
-> **Productivity / Self-Development**
->
-> *"Every hour counts. Every step matters."*
+This contains everything you need to run your app locally.
 
----
+View your app in AI Studio: https://ai.studio/apps/fd0af871-84ec-455a-bce7-739780115c9e
 
-## The Problem It Solves
+## Run Locally
 
-You're 20 hours into a 60-hour course and it feels like nothing — until you see it logged.
+**Prerequisites:**  Node.js
 
-**Milestone** turns your progress into a visible achievement story. Log time or steps toward any goal, and watch your journey build into a timeline you're proud of. It's not a task manager — it's a **progress journal** that celebrates how far you've come.
 
----
-
-## ✨ Key Features
-
-| Feature | Description |
-|---|---|
-| ⏱️ **Session Logger** | Log time spent on any goal — study, fitness, skill-building |
-| 🏆 **Achievement Milestones** | Hit 25%, 50%, 75%, 100% — get celebrated with badge unlocks |
-| 📅 **Progress Timeline** | Scroll back through your journey — every session, visualized |
-| 🔥 **Streak Tracking** | Build momentum by keeping your daily/weekly streaks alive |
-| 📈 **Visual Progress Bar** | See exactly how far you are from your goal at a glance |
-
----
-
-## 👥 Target Users
-
-- 🎓 Students
-- 📚 Self-learners
-- 🏃 People building habits or skills
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

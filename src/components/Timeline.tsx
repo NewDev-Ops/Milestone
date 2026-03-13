@@ -27,9 +27,9 @@ export function Timeline({ goal, sessions, onClose }: TimelineProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: "100%" }}
       transition={{ type: "spring", damping: 25, stiffness: 300 }}
-      className="fixed inset-0 bg-zinc-950 z-50 flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
+      className="fixed inset-0 bg-zinc-950 z-50 flex flex-col pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
     >
-      <div className="bg-zinc-900 border-b border-zinc-800 p-4 flex items-center sticky top-0 z-10">
+      <div className="bg-zinc-900 border-b border-zinc-800 px-4 pb-4 pt-[calc(1rem+env(safe-area-inset-top))] flex items-center sticky top-0 z-10">
         <motion.button 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
